@@ -1,0 +1,5 @@
+Flask
+Docker
+requests
+pytest
+coverage
