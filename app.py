@@ -2,7 +2,6 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 import subprocess
-import cowsay
 
 @app.route('/')
 def index():
@@ -15,9 +14,15 @@ def fortune():
 
 @app.route('/cowsay/<message>/', methods=['GET'])
 def cowsay(message):
-    return cowsay.cow(message)
+    cow = subprocess.check_output('cowsay -f turtle ' + message, shell=True)
+    return '<pre>' + cow.decode("utf-8") + '</pre>'
 
 @app.route('/cowfortune/', methods=['GET'])
 def pipe_fortune():
-    pass
+    cowfortune = subprocess.run('fortune | cowsay -f turtle ', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+    return '<pre>' + cowfortune.stdout.decode('utf-8') + '</pre>'
 
+    #fortune = subprocess.check_output("fortune", shell=True)
+    #fortune = fortune.decode("utf-8")
+    #cow = subprocess.check_output('cowsay ' + fortune, shell=True)
+    #return '<pre>' + cow.decode("utf-8") + '</pre>'
