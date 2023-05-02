@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request, session, jsonify, abort
 app = Flask(__name__)
 
 import subprocess
@@ -22,10 +22,5 @@ def pipe_fortune():
     cowfortune = subprocess.run('fortune | cowsay -f turtle ', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
     return '<pre>' + cowfortune.stdout.decode('utf-8') + '</pre>'
 
-    #fortune = subprocess.check_output("fortune", shell=True)
-    #fortune = fortune.decode("utf-8")
-    #cow = subprocess.check_output('cowsay ' + fortune, shell=True)
-    #return '<pre>' + cow.decode("utf-8") + '</pre>'
-
-
+    #extra cows found here:
     #/usr/share/cowsay/cow
