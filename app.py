@@ -26,3 +26,6 @@ def pipe_fortune():
     #fortune = fortune.decode("utf-8")
     #cow = subprocess.check_output('cowsay ' + fortune, shell=True)
     #return '<pre>' + cow.decode("utf-8") + '</pre>'
+
+
+    #/usr/share/cowsay/cow
